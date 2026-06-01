@@ -10,7 +10,7 @@
 
 ### 1.1 Motivation
 
-Modern encrypted email systems have made significant progress in protecting message contents. Both Proton Mail and Tuta encrypt the body, subject, and attachments end-to-end. However, all major encrypted-email providers persist envelope metadata — sender address, recipient addresses, CC/BCC lists, Message-ID, original date, Reply-To, and routing headers — in plaintext at rest.
+Encrypted email systems protect message contents well: Proton Mail and Tuta both encrypt the body, subject, and attachments end-to-end. But all major providers store envelope metadata — sender address, recipient addresses, CC/BCC lists, Message-ID, original date, Reply-To, and routing headers — in plaintext at rest.
 
 This metadata is the primary input to traffic analysis. It reveals:
 
@@ -19,7 +19,7 @@ This metadata is the primary input to traffic analysis. It reveals:
 - Communication patterns suggestive of relationships, transactions, employment, illness, or activism
 - Network graphs of organizations under surveillance
 
-Empirical work by intelligence-agency disclosures and academic researchers establishes that envelope metadata is more valuable to mass-surveillance pipelines than message contents, both because it is structured (machine-tractable) and because it is rarely encrypted.
+Intelligence disclosures and academic research show that envelope metadata is often more valuable to mass-surveillance systems than message content: it is structured (machine-readable) and rarely encrypted.
 
 This specification defines a protocol for encrypting envelope metadata at rest in SMTP-based mail systems, while remaining compatible with the SMTP protocol for external delivery.
 

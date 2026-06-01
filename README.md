@@ -1,10 +1,10 @@
 # vernam-envelope-encryption
 
-> **Encrypted email systems encrypt your message body. They do not encrypt who you sent it to.** This is an open protocol — and reference Go library — that does.
+> **Encrypted email systems encrypt your message body. They do not encrypt who you sent it to.** This is an open protocol, with reference implementations, that does.
 
 ## The problem
 
-Proton Mail, Tuta, and every other major encrypted-email provider persist envelope metadata — sender address, recipient addresses, CC/BCC, Reply-To, Message-ID, original date — in plaintext at rest. This is the primary input to traffic analysis: who talks to whom, when, how often. Snowden-era disclosures and academic surveillance research consistently identify metadata, not message content, as what intelligence services and bulk-collection pipelines actually consume.
+Proton Mail, Tuta, and every other major encrypted-email provider store envelope metadata — sender address, recipient addresses, CC/BCC, Reply-To, Message-ID, original date — in plaintext at rest. This is the primary input to traffic analysis: who talks to whom, and when. Intelligence disclosures and surveillance research repeatedly show that metadata, not message content, is what bulk-collection systems rely on.
 
 ## The protocol
 
@@ -19,7 +19,7 @@ The result: a server storing encrypted email can see the *number* of recipients 
 
 ## Status
 
-**Specification phase, pending NLnet funding.** See [STATUS.md](./STATUS.md).
+**Specification plus partial reference implementation; pending NLnet Restack funding.** See [STATUS.md](./STATUS.md).
 
 This repository contains:
 

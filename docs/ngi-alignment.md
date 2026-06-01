@@ -42,7 +42,7 @@ The protocol is constructed to minimize the data an operator can be compelled to
 - **Data minimization** (GDPR Art. 5(1)(c)): the operator cannot retain plaintext metadata it does not require for routing
 - **Purpose limitation** (GDPR Art. 5(1)(b)): metadata not stored as plaintext cannot be repurposed for analytics or profiling
 - **Storage limitation** (GDPR Art. 5(1)(e)): encrypted metadata at rest reduces the footprint of identifiable data even when retention is long
-- **Security of processing** (GDPR Art. 32): the protocol implements state-of-the-art encryption (AES-256-GCM, hybrid PQC) with appropriate technical and organizational measures
+- **Security of processing** (GDPR Art. 32): the protocol uses AES-256-GCM and a hybrid post-quantum KEM to encrypt metadata at rest
 
 The protocol is also consistent with the direction of the EU's Cyber Resilience Act, which emphasizes secure defaults, transparency, and resilience against future cryptographic threats.
 
@@ -66,10 +66,10 @@ This project is designed to complement, not duplicate, prior and concurrent NLne
 - **Quantum-Safe Cryptography in Sequoia PGP** (NGI0 Commons Fund, 2025): operates at the OpenPGP layer for message-content encryption. This project operates at the envelope-metadata layer in mail-system storage, a distinct concern.
 - **Rosenpass** (NGI Assure, 2022–2024): post-quantum extension to WireGuard, transport-layer. This project operates at the application-layer storage encryption, orthogonal.
 - **oqsprovider** (NGI Assure, 2021–2023): post-quantum primitives for OpenSSL. This project consumes such primitives but does not itself provide them.
-- **CurveForge** (NGI0 Commons Fund, 2026): low-level post-quantum arithmetic. Adjacent and potentially leveraged at the implementation layer.
+- **CurveForge** (NGI0 Commons Fund, 2026): low-level post-quantum arithmetic. Adjacent; could be used at the implementation layer.
 
 The proposed deliverable fills a gap not addressed by these existing projects: encryption of email envelope metadata at the storage layer, with a vendor-neutral specification and reference implementation.
 
 ## Summary
 
-The project's contribution to the NGI vision rests on its substantive content — privacy-preserving infrastructure, defense against surveillance, post-quantum readiness, open commons artifacts. European stakeholders are direct beneficiaries: providers, researchers, civil society, and end users. The applicant's geography is a property of administration, not of where the technical commons benefit will flow.
+The European Dimension here is in the work, not the applicant's address. The deliverable is an open, vendor-neutral protocol that European email providers, researchers, and civil-society organizations can adopt directly. The applicant happens to be incorporated in Canada; the commons it produces is available to everyone, EU included.

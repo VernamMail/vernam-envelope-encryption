@@ -1,6 +1,6 @@
 # Prior Art and Related Work
 
-This document surveys related work in encrypted email and post-quantum cryptography, situating this specification within the broader landscape.
+This document surveys related work in encrypted email and post-quantum cryptography and explains how this specification relates to it.
 
 ## Encrypted Email Systems
 

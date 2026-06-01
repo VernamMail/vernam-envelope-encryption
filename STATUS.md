@@ -47,7 +47,7 @@ The grant **does not fund** the existing private implementations. The grant fund
 
 1. Decouple the protocol from product-specific data structures, error models, and database schemas
 2. Produce a clean, vendor-neutral public Go API
-3. Generate a comprehensive, publicly-auditable test vector suite
+3. Generate a publicly-auditable test vector suite
 4. Document the protocol with sufficient rigor that implementers in other languages and other systems can adopt it
 5. Commission and respond to a third-party cryptographic review
 6. Publish a stable v1.0 release independent of any product
