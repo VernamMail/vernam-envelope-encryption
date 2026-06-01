@@ -1,0 +1,51 @@
+{
+  "spec_version": "0.1",
+  "description": "Test vectors for the envelope-metadata encryption protocol. Vector 1 (envelope-field) is reproducible against the reference implementation. Vector 2 (hybrid-wrap) is a placeholder pending implementation of the hybrid KEM in milestone 3.",
+  "wire_constants": {
+    "WireVersionV1": "0x01",
+    "WireVersionV2": "0x02",
+    "SessionKeySize": 32,
+    "GCMNonceSize": 12,
+    "GCMTagSize": 16,
+    "X25519KeySize": 32,
+    "KyberCiphertextSize": 1568,
+    "WrappedKeyWireSize": 1661,
+    "HKDFInfo": "VernamMail-EnvelopeEncryption-v1"
+  },
+  "vectors": [
+    {
+      "id": "envelope-field-001",
+      "description": "AES-256-GCM encryption of an email From-address field with deterministic test inputs. Reproducible by the reference implementation; verified by go/envelope_test.go::TestEncryptFieldKnownVector.",
+      "status": "verified",
+      "spec_reference": "SPEC.md §4.2 and §5.2",
+      "inputs": {
+        "session_key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+        "iv_hex": "000102030405060708090a0b",
+        "plaintext_utf8": "alice@example.com",
+        "plaintext_hex": "616c696365406578616d706c652e636f6d",
+        "aad_hex": ""
+      },
+      "expected_outputs": {
+        "ciphertext_hex": "266ebf78a0a5a763ec2ce7e7d4c71b02ee",
+        "tag_hex": "b13438bcf297aba04675c1f322b9610e",
+        "wire_hex": "000102030405060708090a0b266ebf78a0a5a763ec2ce7e7d4c71b02eeb13438bcf297aba04675c1f322b9610e",
+        "wire_length_bytes": 45
+      }
+    },
+    {
+      "id": "hybrid-wrap-001",
+      "description": "Wrap a session key to a recipient using the hybrid ML-KEM-1024 + X25519 KEM with v2 ciphertext-binding AAD. Pending milestone 3 of the reference implementation.",
+      "status": "TODO",
+      "spec_reference": "SPEC.md §4.3 and §5.1",
+      "inputs": {
+        "session_key_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+        "recipient_kyber_pubkey_hex": "TODO_PENDING_IMPLEMENTATION",
+        "recipient_x25519_pubkey_hex": "TODO_PENDING_IMPLEMENTATION",
+        "ephemeral_x25519_seed_hex": "TODO_PENDING_IMPLEMENTATION"
+      },
+      "expected_outputs": {
+        "wire_hex": "TODO_1661_BYTES_PENDING_IMPLEMENTATION"
+      }
+    }
+  ]
+}
