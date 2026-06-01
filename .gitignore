@@ -21,3 +21,10 @@ coverage.html
 
 # Go module download cache (defensive; usually outside the repo)
 /vendor/
+
+# Node / TypeScript (ts/ reference)
+node_modules/
+ts/node_modules/
+*.tsbuildinfo
+package-lock.json
+

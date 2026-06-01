@@ -24,6 +24,14 @@ Items planned for v0.8 (NLnet milestone 3):
 - Cross-language interop test suite
 - Public report on three-implementation interop validation
 
+## [Unreleased] - cross-language reference
+
+### Added
+
+- Minimal standalone TypeScript reference implementation of envelope-field encryption (`ts/envelope-field.ts`), depending only on the Web Crypto API
+- Cross-language interop test (`TestKnownVectorMatchesGo`) asserting the TypeScript output is byte-identical to the Go reference for test vector envelope-field-001
+- `ts/README.md` documenting the cross-language reference and its scope
+
 ## [0.1.0] - 2026-05-02
 
 Initial public draft.

@@ -29,7 +29,8 @@ This repository contains:
 - [docs/prior-art.md](./docs/prior-art.md) — comparison with Proton, Tuta, Sequoia PGP, Rosenpass, oqsprovider
 - [docs/ngi-alignment.md](./docs/ngi-alignment.md) — how this advances the Next Generation Internet vision
 - [go/](./go/) — reference implementation in Go (envelope-field encryption working; hybrid KEM scheduled for milestone 3)
-- [test-vectors/](./test-vectors/) — reproducible test vectors against the reference implementation
+- [ts/](./ts/) — minimal TypeScript reference for envelope-field encryption; produces byte-identical output to the Go reference (cross-language interop demonstrated, not just claimed)
+- [test-vectors/](./test-vectors/) — reproducible test vectors verified by both the Go and TypeScript implementations
 - [ROADMAP.md](./ROADMAP.md) — five milestones aligned with NLnet deliverables
 - [SECURITY.md](./SECURITY.md) — vulnerability disclosure policy
 - [CONTRIBUTING.md](./CONTRIBUTING.md) — how to contribute during specification phase
@@ -49,7 +50,8 @@ The protocol is in production use within Vernam Mail's pre-launch encrypted-emai
 - **15 minutes**: add [docs/threat-model.md](./docs/threat-model.md) and [docs/prior-art.md](./docs/prior-art.md)
 - **45 minutes**: the full [SPEC.md](./SPEC.md)
 - **For NLnet reviewers**: also see [docs/ngi-alignment.md](./docs/ngi-alignment.md)
-- **Hands-on**: `cd go && go test -v ./...` (10 tests pass; see [go/envelope_test.go](./go/envelope_test.go))
+- **Hands-on (Go)**: `cd go && go test -v ./...` (10 tests pass; see [go/envelope_test.go](./go/envelope_test.go))
+- **Hands-on (TypeScript)**: `cd ts && npx tsx --test ./envelope-field.test.ts` — the `TestKnownVectorMatchesGo` test proves the TS output is byte-identical to Go
 - **Working demo**: `cd go && go run ./examples/encrypt_decrypt` (encrypts three envelope fields, decrypts them, demonstrates tamper rejection; see [go/examples/](./go/examples/))
 
 ## Comparison with existing systems

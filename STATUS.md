@@ -15,12 +15,13 @@ This repository represents the open-commons extraction of a protocol that is alr
 - **Wire format documentation:** [docs/wire-format.md](./docs/wire-format.md) — byte-level diagrams
 - **Prior art comparison:** [docs/prior-art.md](./docs/prior-art.md) — situated against Proton, Tuta, Sequoia PGP, Rosenpass, oqsprovider
 - **NGI alignment:** [docs/ngi-alignment.md](./docs/ngi-alignment.md) — how this project advances the Next Generation Internet vision
-- **Reference implementation, partial:** Go library at [go/](./go/) provides:
+- **Reference implementation, partial (Go):** Go library at [go/](./go/) provides:
   - 32-byte session key generation (`NewSessionKey`)
   - AES-256-GCM envelope-field encryption / decryption (`EncryptField`, `DecryptField`)
   - Wire-format constants validated against the specification
   - 10 passing tests including a verified known-vector test against [test-vectors/basic.json](./test-vectors/basic.json)
-- **Verified test vector:** envelope-field-001 in [test-vectors/basic.json](./test-vectors/basic.json), reproducible via `go test -v ./...`
+- **Cross-language reference (TypeScript):** minimal standalone TS module at [ts/](./ts/) implementing envelope-field encryption on the Web Crypto API. Its `TestKnownVectorMatchesGo` test asserts byte-identical output to the Go reference for test vector envelope-field-001 — concrete, public demonstration that the protocol is language-agnostic.
+- **Verified test vector:** envelope-field-001 in [test-vectors/basic.json](./test-vectors/basic.json), reproduced identically by both the Go (`go test -v ./...`) and TypeScript (`npx tsx --test`) implementations.
 - **License:** [Apache 2.0](./LICENSE)
 - **Vulnerability disclosure policy:** [SECURITY.md](./SECURITY.md)
 - **Contribution process:** [CONTRIBUTING.md](./CONTRIBUTING.md)
