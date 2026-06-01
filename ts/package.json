@@ -1,0 +1,22 @@
+{
+  "name": "@vernam/envelope-field",
+  "version": "0.1.0",
+  "description": "TypeScript reference implementation of envelope-field encryption (AES-256-GCM) for the Vernam envelope-metadata encryption protocol",
+  "type": "module",
+  "license": "Apache-2.0",
+  "main": "envelope-field.ts",
+  "scripts": {
+    "test": "node --test --import tsx ./envelope-field.test.ts"
+  },
+  "keywords": [
+    "encrypted-email",
+    "metadata-protection",
+    "aes-gcm",
+    "post-quantum",
+    "envelope-encryption"
+  ],
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  }
+}
