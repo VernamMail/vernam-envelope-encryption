@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+title: "vernam-envelope-encryption: An open protocol for encrypting email envelope metadata"
+message: "If you use this specification or the reference library, please cite it as below."
+type: software
+authors:
+  - name: "Vernam Mail"
+    email: "security@vernammail.com"
+repository-code: "https://github.com/VernamMail/vernam-envelope-encryption"
+url: "https://github.com/VernamMail/vernam-envelope-encryption"
+license: Apache-2.0
+version: "0.1.0"
+date-released: "2026-05-02"
+keywords:
+  - encrypted-email
+  - post-quantum-cryptography
+  - metadata-protection
+  - traffic-analysis-resistance
+  - hybrid-kem
+  - ml-kem
+  - x25519
+  - aes-gcm
+  - hkdf
+  - smtp
+abstract: >
+  An open specification and reference Go library for encrypting email envelope
+  metadata (sender, recipient, message-id, timestamps) at rest in SMTP-based
+  mail systems. Combines per-email AES-256-GCM symmetric encryption with
+  per-recipient session-key wrapping via a hybrid post-quantum key encapsulation
+  mechanism (ML-KEM-1024 + X25519 with ciphertext-binding AAD). Designed to
+  defend against passive storage adversaries, compelled-disclosure adversaries,
+  and future quantum adversaries (harvest-now-decrypt-later).

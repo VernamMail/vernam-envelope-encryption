@@ -1,0 +1,23 @@
+# Binaries that may be produced when building or running examples locally.
+# These should never be committed.
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binaries (`go test -c`)
+*.test
+
+# Output of the go coverage tool
+*.out
+coverage.html
+
+# Editor / OS scratch files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*~
+
+# Go module download cache (defensive; usually outside the repo)
+/vendor/

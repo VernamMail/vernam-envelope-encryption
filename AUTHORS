@@ -1,0 +1,19 @@
+# Authors
+
+This project is maintained by the Vernam Mail team.
+
+## Maintainer
+
+Vernam Mail Inc.
+Contact: `security@vernammail.com`
+
+## Acknowledgments
+
+The protocol's hybrid KEM construction draws on work by:
+
+- The NIST PQC standardization team (FIPS 203 ML-KEM)
+- Daniel J. Bernstein and the X25519 designers (RFC 7748)
+- Hugo Krawczyk and Pasi Eronen (HKDF, RFC 5869)
+- The IETF CFRG and authors of RFC 9180 (HPKE) for hybrid construction patterns
+
+External contributors will be listed here as the project grows post-funding.
