@@ -1,7 +1,7 @@
 # Envelope Metadata Encryption for SMTP-Based Mail Systems
 
 **Version**: 0.1 (draft)
-**Status**: Specification phase, pre-implementation
+**Status**: Draft. Partial reference implementation: envelope-field encryption is implemented and cross-verified in Go and TypeScript; the hybrid KEM wrap (§4.3) is specified but not yet implemented in the public reference library (see ROADMAP.md milestone 3)
 **License**: Apache 2.0
 
 ---
@@ -10,7 +10,7 @@
 
 ### 1.1 Motivation
 
-Encrypted email systems protect message contents well: Proton Mail and Tuta both encrypt the body, subject, and attachments end-to-end. But all major providers store envelope metadata — sender address, recipient addresses, CC/BCC lists, Message-ID, original date, Reply-To, and routing headers — in plaintext at rest.
+Encrypted email systems protect message contents well: Proton Mail and Tuta both encrypt the body and attachments end-to-end, and Tuta additionally encrypts the subject. But all major providers store envelope metadata (sender address, recipient addresses, CC/BCC lists, Message-ID, original date, Reply-To, and routing headers) in plaintext at rest.
 
 This metadata is the primary input to traffic analysis. It reveals:
 
@@ -44,7 +44,7 @@ This specification does NOT cover:
 - Attachment encryption (same)
 - Key management, key rotation, key recovery
 - User authentication
-- External (non-Vernam-style) recipient handling
+- Handling of recipients on systems that do not implement this protocol
 - Storage backend or schema implementation choices
 - Indexing, search, or threading semantics for encrypted metadata
 
@@ -155,10 +155,10 @@ For each recipient R with public-key identity `(KyberPK_R, X25519PK_R)`, the sen
 1. (kyber_ct, kyber_ss) ← ML-KEM-1024-Encapsulate(KyberPK_R)
 2. (eph_sk, eph_pk)     ← X25519-KeyGen()
 3. x25519_ss            ← X25519-DH(eph_sk, X25519PK_R)
-4. K_combined           ← HKDF-Expand(
+4. K_combined           ← HKDF-SHA256(
                             ikm  = kyber_ss ‖ x25519_ss,
                             salt = nil,
-                            info = "VernamMail-EnvelopeEncryption-v1",
+                            info = "EnvelopeMetadataEncryption-v1",
                             L    = 32
                           )
 5. iv_wrap              ← random(12)
@@ -166,6 +166,8 @@ For each recipient R with public-key identity `(KyberPK_R, X25519PK_R)`, the sen
 7. wrapped, tag         ← AES-256-GCM-Encrypt(K_combined, iv_wrap, K_session, AAD)
 8. wire                 ← 0x02 ‖ kyber_ct ‖ eph_pk ‖ iv_wrap ‖ wrapped ‖ tag
 ```
+
+`HKDF-SHA256` denotes the full extract-then-expand construction of RFC 5869: `PRK = HKDF-Extract(salt, ikm)` followed by `K_combined = HKDF-Expand(PRK, info, L)`. A nil salt is treated per RFC 5869 §2.2 as a string of HashLen (32) zero bytes.
 
 Output `wire` is exactly **1661 bytes**:
 
@@ -187,10 +189,10 @@ Upon receipt, the recipient unwraps the session key as follows:
 2. If version ≠ 0x02 (and not v1; see §4.5): reject.
 3. kyber_ss     ← ML-KEM-1024-Decapsulate(KyberSK_R, kyber_ct)
 4. x25519_ss    ← X25519-DH(X25519SK_R, eph_pk)
-5. K_combined   ← HKDF-Expand(
+5. K_combined   ← HKDF-SHA256(
                     ikm  = kyber_ss ‖ x25519_ss,
                     salt = nil,
-                    info = "VernamMail-EnvelopeEncryption-v1",
+                    info = "EnvelopeMetadataEncryption-v1",
                     L    = 32
                   )
 6. AAD          ← kyber_ct ‖ eph_pk
@@ -208,13 +210,15 @@ The AAD binding (v2) prevents an attacker from substituting `kyber_ct` or `eph_p
 
 ### 4.5.1 Legacy HKDF Info String
 
-The reference implementation of this protocol originated in a private deployment of Vernam Mail. Prior to the system's 2025 rebrand from "Enigma Inbox" to "Vernam Mail," that deployment used the HKDF info string `"ENIGMA-HybridKEM-v1"`. This canonical specification adopts the clean, vendor-neutral name `"VernamMail-EnvelopeEncryption-v1"` (as specified in §4.3 step 4 and §4.4 step 5).
+The protocol originated in a private deployment (Vernam Mail, previously named "Enigma Inbox"). That deployment uses the HKDF info string `"ENIGMA-HybridKEM-v1"`. This specification adopts the vendor-neutral canonical name `"EnvelopeMetadataEncryption-v1"` (as specified in §4.3 step 4 and §4.4 step 5), so that no product name is embedded in the protocol's domain separation.
+
+An interim public draft of this specification (May 2026) named the info string `"VernamMail-EnvelopeEncryption-v1"`. No implementation ever produced ciphertexts under that string; it has no legacy status and MUST NOT be recognized.
 
 **For implementations interoperating with the legacy deployment:**
 
-- New wrappings produced by spec-compliant implementations MUST use `"VernamMail-EnvelopeEncryption-v1"`.
+- New wrappings produced by spec-compliant implementations MUST use `"EnvelopeMetadataEncryption-v1"`.
 - Decryption implementations MAY support a "legacy mode" that, on failure to decrypt with the canonical info string, retries with the legacy info string `"ENIGMA-HybridKEM-v1"`. This fallback is intended solely for migrating ciphertexts produced before the canonical name was adopted.
-- The reference Go library exposes legacy-mode decryption as an explicit, off-by-default option. Production deployments are expected to migrate stored ciphertexts to the canonical info string within their normal re-encryption operations (e.g., re-keying, key rotation) and disable legacy mode thereafter.
+- The reference Go library will expose legacy-mode decryption as an explicit, off-by-default option when the hybrid KEM lands (ROADMAP.md milestone 3). Production deployments are expected to migrate stored ciphertexts to the canonical info string within their normal re-encryption operations (e.g., re-keying, key rotation) and disable legacy mode thereafter.
 
 **Future versions** of this specification (v2 and later) MUST NOT recognize the legacy info string. Migration is REQUIRED before any deployment claims compliance with v1.0 stable of this specification.
 
@@ -279,7 +283,7 @@ The hash leaks equality but not the original Message-ID value.
 
 ### 6.3 External SMTP Egress
 
-Outbound mail to non-Vernam recipients is delivered via standard SMTP, which requires plaintext envelope (`MAIL FROM`, `RCPT TO`) on the wire. Implementations MUST NOT persist this plaintext on disk after the SMTP session closes; envelope plaintext SHOULD reside in process memory only during the active session.
+Outbound mail to recipients on systems that do not implement this protocol is delivered via standard SMTP, which requires plaintext envelope (`MAIL FROM`, `RCPT TO`) on the wire. Implementations MUST NOT persist this plaintext on disk after the SMTP session closes; envelope plaintext SHOULD reside in process memory only during the active session.
 
 ### 6.4 Server-Assigned Routing Metadata
 
@@ -357,7 +361,7 @@ Each session key is generated fresh per email. The wrapped key wire format is bo
 
 ### 7.8 HKDF Salt
 
-The HKDF salt is fixed as nil, with the strength of the derivation resting on the entropy of the IKM (a 1568-byte ML-KEM-1024 shared secret concatenated with a 32-byte X25519 shared secret). Implementations MUST NOT vary the salt.
+The HKDF salt is fixed as nil (treated per RFC 5869 §2.2 as 32 zero bytes), with the strength of the derivation resting on the entropy of the IKM: the 32-byte ML-KEM-1024 shared secret concatenated with the 32-byte X25519 shared secret. Implementations MUST NOT vary the salt.
 
 ---
 
@@ -369,7 +373,7 @@ An implementation is compliant with this specification if it:
 
 1. Correctly produces and consumes the wire formats defined in §5
 2. Uses only the primitives and parameters defined in §4.1
-3. Uses the exact canonical info string `"VernamMail-EnvelopeEncryption-v1"` in HKDF-Expand for all NEW encryptions (legacy-mode decryption per §4.5.1 is permitted but does not constitute spec compliance)
+3. Uses the exact canonical info string `"EnvelopeMetadataEncryption-v1"` as the HKDF info parameter for all NEW encryptions (legacy-mode decryption per §4.5.1 is permitted but does not constitute spec compliance)
 4. Implements the AAD binding defined in §4.3 step 6 for v2 wrapping
 5. Documents its operational plaintext per §6.4
 6. If supporting legacy-mode decryption (§4.5.1), exposes it as an explicit, off-by-default option and documents migration intent
@@ -455,9 +459,9 @@ For a single-recipient email, the per-email overhead is ~336 + 2 × 1661 ≈ **3
 | Standard SMTP | Plain | Plain | Plain | Plain | Plain | Plain |
 | Proton Mail | Encrypted | Plain | Plain | Plain | Plain | Plain |
 | Tuta | Encrypted | Encrypted | Plain | Plain | Plain | Plain |
-| Vernam Mail (this spec) | Encrypted | Encrypted | Encrypted | Encrypted | Encrypted | Hashed + encrypted |
+| This protocol | Encrypted | Encrypted | Encrypted | Encrypted | Encrypted | Hashed + encrypted |
 
-(As of April 2026; verify before citing in derivative work.)
+(As of July 2026; verify before citing in derivative work.)
 
 ---
 

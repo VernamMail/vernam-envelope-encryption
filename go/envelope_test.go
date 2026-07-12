@@ -51,8 +51,8 @@ func TestWrappedKeyWireSize(t *testing.T) {
 // TestHKDFInfoString verifies the HKDF info string is exactly the value
 // required by the spec for v0.1 compliance (SPEC.md §4.3 step 4).
 func TestHKDFInfoString(t *testing.T) {
-	if HKDFInfo != "VernamMail-EnvelopeEncryption-v1" {
-		t.Fatalf("HKDFInfo = %q, want %q (per SPEC.md §4.3)", HKDFInfo, "VernamMail-EnvelopeEncryption-v1")
+	if HKDFInfo != "EnvelopeMetadataEncryption-v1" {
+		t.Fatalf("HKDFInfo = %q, want %q (per SPEC.md §4.3)", HKDFInfo, "EnvelopeMetadataEncryption-v1")
 	}
 }
 

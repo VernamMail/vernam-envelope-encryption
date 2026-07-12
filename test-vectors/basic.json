@@ -10,7 +10,7 @@
     "X25519KeySize": 32,
     "KyberCiphertextSize": 1568,
     "WrappedKeyWireSize": 1661,
-    "HKDFInfo": "VernamMail-EnvelopeEncryption-v1"
+    "HKDFInfo": "EnvelopeMetadataEncryption-v1"
   },
   "vectors": [
     {

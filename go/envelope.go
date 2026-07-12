@@ -6,7 +6,7 @@
 //   - AES-256-GCM envelope-field encryption / decryption (EncryptField, DecryptField)
 //   - Wire-format constants validated against the specification
 //
-// Pending NLnet Restack fund support (application pending):
+// Planned as grant-funded milestones (see ../ROADMAP.md):
 //   - Hybrid ML-KEM-1024 + X25519 wrap/unwrap (Wrap, Unwrap)
 //   - Comprehensive test vectors for the wrapped-key wire format
 //   - Cross-language interop test suite
@@ -27,14 +27,14 @@ const (
 	WireVersionV1 byte = 0x01
 	WireVersionV2 byte = 0x02
 
-	SessionKeySize    = 32   // bytes
-	GCMNonceSize      = 12   // bytes
-	GCMTagSize        = 16   // bytes
-	X25519KeySize     = 32   // bytes
+	SessionKeySize      = 32   // bytes
+	GCMNonceSize        = 12   // bytes
+	GCMTagSize          = 16   // bytes
+	X25519KeySize       = 32   // bytes
 	KyberCiphertextSize = 1568 // ML-KEM-1024 ciphertext
 	WrappedKeyWireSize  = 1661 // V + kyber_ct + eph_pk + IV + wrapped + tag
 
-	HKDFInfo = "VernamMail-EnvelopeEncryption-v1"
+	HKDFInfo = "EnvelopeMetadataEncryption-v1"
 )
 
 // Errors.
@@ -50,8 +50,8 @@ type SessionKey [SessionKeySize]byte
 
 // PublicIdentity holds a recipient's public-key identity for wrapping.
 type PublicIdentity struct {
-	KyberPublicKey   []byte // ML-KEM-1024 public key
-	X25519PublicKey  [X25519KeySize]byte
+	KyberPublicKey  []byte // ML-KEM-1024 public key
+	X25519PublicKey [X25519KeySize]byte
 }
 
 // PrivateIdentity holds a recipient's private keys for unwrapping.
@@ -141,7 +141,7 @@ func Wrap(sk SessionKey, recipient PublicIdentity) (WrappedKey, error) {
 	// TODO(nlnet-milestone-3): Implement hybrid encapsulation per SPEC.md §4.3:
 	//   1. ML-KEM-1024 encapsulate to recipient.KyberPublicKey
 	//   2. X25519 ephemeral keygen + DH with recipient.X25519PublicKey
-	//   3. HKDF-Expand combined shared secret with info=HKDFInfo
+	//   3. HKDF-SHA256 (extract-then-expand) over the combined shared secrets with info=HKDFInfo
 	//   4. AES-256-GCM wrap session key with AAD = kyber_ct || eph_pk
 	//   5. Serialize per §5.1 wire format
 	return WrappedKey{}, errors.New("envelope: Wrap not yet implemented")
