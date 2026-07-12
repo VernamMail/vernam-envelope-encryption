@@ -44,7 +44,7 @@ The pattern of combining a post-quantum KEM with a classical KEM (e.g., X25519) 
 
 - Stebila, D., et al., "Hybrid key exchange in TLS 1.3," IETF draft `draft-ietf-tls-hybrid-design`
 - ETSI TR 103 619, "Migration strategies and recommendations to Quantum Safe schemes"
-- Westerbaan, B., "Hybrid Public Key Encryption," Cloudflare Blog, 2022
+- Barnes, R., Bhargavan, K., Lipp, B., Wood, C. A., "Hybrid Public Key Encryption," RFC 9180, February 2022
 
 ### NLnet-Funded PQC Projects (Adjacent)
 

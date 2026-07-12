@@ -35,7 +35,7 @@ This repository contains:
 - [SECURITY.md](./SECURITY.md): vulnerability disclosure policy
 - [CONTRIBUTING.md](./CONTRIBUTING.md): how to contribute during specification phase
 
-The protocol runs in Vernam Mail's pre-launch encrypted-email deployment, where Go (server), TypeScript (web client), and Kotlin (Android) implementations have been interoperating since early 2026. Funding from NLnet (Restack fund, application planned for its first open call) will support extracting it as a standalone, audited, open-source library.
+The protocol runs in Vernam Mail's pre-launch encrypted-email deployment: the Go server and TypeScript web client have carried all pre-launch traffic since early 2026, and a Kotlin (Android) implementation interoperates in ongoing integration testing. Funding from NLnet (Restack fund, application planned for its first open call) will support extracting it as a standalone, audited, open-source library.
 
 ## What this is not
 
@@ -63,7 +63,7 @@ The protocol runs in Vernam Mail's pre-launch encrypted-email deployment, where 
 | Tuta | Encrypted | Encrypted | Plain | Plain | Plain | Plain |
 | **This protocol** | Encrypted | Encrypted | Encrypted | Encrypted | Encrypted | Hashed + encrypted |
 
-(As of July 2026; see SPEC.md Appendix A for sources.)
+(As of July 2026; see [docs/prior-art.md](./docs/prior-art.md) for sources.)
 
 ## License
 

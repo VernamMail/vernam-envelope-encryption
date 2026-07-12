@@ -66,6 +66,16 @@ func TestVersionConstants(t *testing.T) {
 	}
 }
 
+// TestWrappedKeyVersion verifies that the version accessor reads the first
+// wire byte, per the SPEC.md §5.1 layout.
+func TestWrappedKeyVersion(t *testing.T) {
+	var w WrappedKey
+	w[0] = WireVersionV2
+	if got := w.version(); got != WireVersionV2 {
+		t.Fatalf("version() = 0x%02x, want 0x%02x", got, WireVersionV2)
+	}
+}
+
 // TestEncryptFieldRoundTrip verifies that production encryption (random IV)
 // followed by decryption recovers the original plaintext.
 func TestEncryptFieldRoundTrip(t *testing.T) {

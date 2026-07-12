@@ -7,30 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Items planned for v0.5 (NLnet milestone 2):
+### Changed
 
-- Production-grade extraction of envelope-field encryption from product code
-- Comprehensive test vector suite (≥10 envelope-field vectors)
-- Fuzzing harness for wire-format parsing
-- Symmetric session-key self-wrap primitive (sender's sent-items copy)
-- godoc-quality documentation on all exported functions
-
-Items planned for v0.8 (NLnet milestone 3):
-
-- Hybrid ML-KEM-1024 + X25519 wrap/unwrap implementation
-- v2 ciphertext-binding AAD per SPEC §4.3
-- v1 backwards-compatibility decryption path
-- Legacy-info-string migration mode per SPEC §4.5.1
-- Cross-language interop test suite
-- Public report on three-implementation interop validation
-
-## [Unreleased] - cross-language reference
+- **Breaking (domain separation):** the canonical HKDF info string is now the vendor-neutral `"EnvelopeMetadataEncryption-v1"`. The interim `"VernamMail-EnvelopeEncryption-v1"` from the 0.1.0 draft was never shipped by any implementation and is not recognized; the deployed legacy string remains `"ENIGMA-HybridKEM-v1"` (SPEC §4.5.1)
+- Go module path corrected to `github.com/VernamMail/vernam-envelope-encryption/go` so the module resolves from this repository
+- Specification corrections: §7.8 IKM description (32-byte ML-KEM-1024 shared secret; 1568 bytes is the ciphertext size), HKDF written as the full RFC 5869 extract-then-expand construction, §4.5.1 legacy-mode wording moved to future tense until milestone 3, storage-overhead arithmetic aligned to the 13 fields defined in §3
+- Documentation refresh: prior-art facts corrected (TutaCrypt shipped March 2024; Proton subject line is not end-to-end encrypted; ETSI reference titles and dates fixed), funding status updated to target the first Restack open call
 
 ### Added
 
 - Minimal standalone TypeScript reference implementation of envelope-field encryption (`ts/envelope-field.ts`), depending only on the Web Crypto API
 - Cross-language interop test (`TestKnownVectorMatchesGo`) asserting the TypeScript output is byte-identical to the Go reference for test vector envelope-field-001
 - `ts/README.md` documenting the cross-language reference and its scope
+
+### Planned
+
+Grant-funded milestones toward v0.5 and v0.8 (extraction, fuzzing, expanded vectors, hybrid KEM, interop suite) are tracked in [ROADMAP.md](./ROADMAP.md).
 
 ## [0.1.0] - 2026-05-02
 

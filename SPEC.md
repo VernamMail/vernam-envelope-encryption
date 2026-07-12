@@ -414,18 +414,18 @@ The following are approximate, pre-benchmarking estimates for a modern x86_64 CP
 - AES-256-GCM encrypt (1 KB envelope field): ~5 µs
 - Estimated total wrap operation: ~150 µs
 
-Estimated per-email overhead for an email with 5 recipients and 12 envelope fields: ~750 µs encryption, ~750 µs decryption per recipient.
+Estimated per-email overhead for an email with 5 recipients and all 13 envelope fields present: ~750 µs encryption, ~750 µs decryption per recipient.
 
 ### 9.3 Storage Overhead
 
 Per email, the AEAD overhead and wrapped-key footprint sum as follows:
 
-- 12 envelope fields × 28 bytes AEAD overhead (12-byte IV + 16-byte tag) = 336 bytes
+- 13 envelope fields (when all are present) × 28 bytes AEAD overhead (12-byte IV + 16-byte tag) = 364 bytes
 - Each wrapped session key: 1661 bytes (one per recipient + one for the sender's own copy)
 - For an email with 5 external recipients, total wrapped keys = 6 × 1661 = 9,966 bytes
-- Combined per-email overhead (5 external recipients): 336 + 9,966 ≈ **10.3 KB**
+- Combined per-email overhead (5 external recipients): 364 + 9,966 ≈ **10.3 KB**
 
-For a single-recipient email, the per-email overhead is ~336 + 2 × 1661 ≈ **3.7 KB**. Overhead grows linearly with recipient count at 1661 bytes per recipient. This is small relative to typical message body sizes, where bodies and attachments commonly run from tens to hundreds of kilobytes.
+For a single-recipient email, the per-email overhead is ~364 + 2 × 1661 ≈ **3.7 KB**. Overhead grows linearly with recipient count at 1661 bytes per recipient. This is small relative to typical message body sizes, where bodies and attachments commonly run from tens to hundreds of kilobytes.
 
 ---
 
@@ -446,8 +446,8 @@ For a single-recipient email, the per-email overhead is ~336 + 2 × 1661 ≈ **3
 - [RFC-5321] Klensin, J., "Simple Mail Transfer Protocol," IETF RFC 5321, October 2008
 - [RFC-2119] Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels," IETF RFC 2119, March 1997
 - [ETSI-TR-103-619] ETSI TR 103 619 V1.1.1, "CYBER; Migration strategies and recommendations to Quantum Safe schemes," European Telecommunications Standards Institute, July 2020
-- [ETSI-TR-103-823] ETSI TR 103 823 V1.1.1, "CYBER; Quantum-Safe Public-Key Encryption and Key Encapsulation," European Telecommunications Standards Institute, March 2022
-- [I-D-IRTF-CFRG-HPKE] Barnes, R., Bhargavan, K., Lipp, B., Wood, C. A., "Hybrid Public Key Encryption," RFC 9180, February 2022
+- [ETSI-TR-103-823] ETSI TR 103 823 V1.1.1, "CYBER; Quantum-Safe Public-Key Encryption and Key Encapsulation," European Telecommunications Standards Institute, September 2021
+- [RFC-9180] Barnes, R., Bhargavan, K., Lipp, B., Wood, C. A., "Hybrid Public Key Encryption," RFC 9180, February 2022
 - [STEBILA-HYBRID] Stebila, D., Fluhrer, S., Gueron, S., "Hybrid key exchange in TLS 1.3," IETF draft `draft-ietf-tls-hybrid-design`
 
 ---

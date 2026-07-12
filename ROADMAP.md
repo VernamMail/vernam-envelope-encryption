@@ -25,7 +25,7 @@ The current public skeleton implements envelope-field encryption at v0.1. This m
 
 **Tasks:**
 - [ ] Extract envelope-field encryption from Vernam Mail's product code into the public library, decoupled from product-specific types, error models, and database schemas
-- [ ] Add the symmetric session-key self-wrap primitive (the sender's own sent-items copy; the hybrid KEM lands in milestone 3)
+- [ ] Add wire-format encoders/decoders and validation for the wrapped-key blob (parsing, version checks, malformed-input rejection); the hybrid KEM cryptography itself, including the sender's own sent-items wrap, lands in milestone 3
 - [ ] Comprehensive unit tests across boundaries: empty plaintext, large plaintext, malformed inputs, tampering, version mismatch
 - [ ] Fuzzing harness for wire-format parsing (`go test -fuzz`)
 - [ ] Expand test vector suite (at least 10 envelope-field vectors covering edge cases)

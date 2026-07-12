@@ -59,15 +59,15 @@ For an email with the From header `alice@example.com` (17 bytes) and one recipie
 - Wrapped session key (1 recipient): 1661 bytes
 - Wrapped session key for sender: 1661 bytes (so sender can decrypt sent items)
 
-For all 12 envelope fields with similar sizes (~30 bytes plaintext average):
+For all 13 envelope fields (when all are present) with similar sizes (~30 bytes plaintext average):
 
-- Total encrypted fields: ~12 × (30 + 28) = ~696 bytes
+- Total encrypted fields: ~13 × (30 + 28) = ~754 bytes
 - Wrapped keys (1 recipient + sender): 2 × 1661 = ~3.3 KB
 - **Total per-email envelope overhead: ~4 KB**
 
 For an email with 10 recipients:
 
-- Encrypted fields: ~696 bytes
+- Encrypted fields: ~754 bytes
 - Wrapped keys: 11 × 1661 = ~18.3 KB
 - **Total: ~19 KB**
 

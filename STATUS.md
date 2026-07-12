@@ -6,7 +6,7 @@
 
 **Specification drafted; partial reference implementation; pending NLnet Restack fund support for full extraction, hardening, audit, and v1.0 release.**
 
-This repository represents the open-commons extraction of a protocol that is already in production use within Vernam Mail's pre-launch encrypted-email system. The grant funds the **extraction work, not the original implementation**.
+This repository represents the open-commons extraction of a protocol that is already in live use within Vernam Mail's pre-launch encrypted-email system. The grant funds the **extraction work, not the original implementation**.
 
 ## What Is Done
 
@@ -41,7 +41,7 @@ These are the deliverables proposed in [ROADMAP.md](./ROADMAP.md):
 
 ## Relationship to Existing Implementations
 
-The protocol described in this repository is currently implemented inside Vernam Mail's private, product-coupled codebase across Go (server), TypeScript (web client), and Kotlin (Android). These implementations have been interoperating with each other in production-grade conditions since early 2026.
+The protocol described in this repository is currently implemented inside Vernam Mail's private, product-coupled codebase across Go (server), TypeScript (web client), and Kotlin (Android). The Go and TypeScript implementations have carried all pre-launch traffic since early 2026; the Kotlin implementation interoperates with them in ongoing integration testing.
 
 The grant **does not fund** the existing private implementations. The grant funds the work to:
 
