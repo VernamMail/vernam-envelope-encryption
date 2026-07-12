@@ -4,7 +4,7 @@
 
 ## The problem
 
-Proton Mail, Tuta, and every other major encrypted-email provider store envelope metadata — sender address, recipient addresses, CC/BCC, Reply-To, Message-ID, original date — in plaintext at rest. This is the primary input to traffic analysis: who talks to whom, and when. Intelligence disclosures and surveillance research repeatedly show that metadata, not message content, is what bulk-collection systems rely on.
+Proton Mail, Tuta, and every other major encrypted-email provider store envelope metadata (sender address, recipient addresses, CC/BCC, Reply-To, Message-ID, original date) in plaintext at rest. This is the primary input to traffic analysis: who talks to whom, and when. Intelligence disclosures and surveillance research repeatedly show that metadata, not message content, is what bulk-collection systems rely on.
 
 ## The protocol
 
@@ -23,19 +23,19 @@ The result: a server storing encrypted email can see the *number* of recipients 
 
 This repository contains:
 
-- [SPEC.md](./SPEC.md) — the protocol specification (~465 lines, 10 sections + appendix)
-- [docs/threat-model.md](./docs/threat-model.md) — adversary classes A1–A7, trust boundaries, known limitations
-- [docs/wire-format.md](./docs/wire-format.md) — byte-level diagrams
-- [docs/prior-art.md](./docs/prior-art.md) — comparison with Proton, Tuta, Sequoia PGP, Rosenpass, oqsprovider
-- [docs/ngi-alignment.md](./docs/ngi-alignment.md) — how this advances the Next Generation Internet vision
-- [go/](./go/) — reference implementation in Go (envelope-field encryption working; hybrid KEM scheduled for milestone 3)
-- [ts/](./ts/) — minimal TypeScript reference for envelope-field encryption; produces byte-identical output to the Go reference (cross-language interop demonstrated, not just claimed)
-- [test-vectors/](./test-vectors/) — reproducible test vectors verified by both the Go and TypeScript implementations
-- [ROADMAP.md](./ROADMAP.md) — five milestones aligned with NLnet deliverables
-- [SECURITY.md](./SECURITY.md) — vulnerability disclosure policy
-- [CONTRIBUTING.md](./CONTRIBUTING.md) — how to contribute during specification phase
+- [SPEC.md](./SPEC.md): the protocol specification (~470 lines, 10 sections + appendix)
+- [docs/threat-model.md](./docs/threat-model.md): adversary classes A1-A7, trust boundaries, known limitations
+- [docs/wire-format.md](./docs/wire-format.md): byte-level diagrams
+- [docs/prior-art.md](./docs/prior-art.md): comparison with Proton, Tuta, Sequoia PGP, Rosenpass, oqsprovider
+- [docs/ngi-alignment.md](./docs/ngi-alignment.md): how this advances the Next Generation Internet vision
+- [go/](./go/): reference implementation in Go (envelope-field encryption working; hybrid KEM scheduled for milestone 3)
+- [ts/](./ts/): minimal TypeScript reference for envelope-field encryption; produces byte-identical output to the Go reference (cross-language interop demonstrated, not just claimed)
+- [test-vectors/](./test-vectors/): reproducible test vectors verified by both the Go and TypeScript implementations
+- [ROADMAP.md](./ROADMAP.md): five milestones aligned with NLnet deliverables
+- [SECURITY.md](./SECURITY.md): vulnerability disclosure policy
+- [CONTRIBUTING.md](./CONTRIBUTING.md): how to contribute during specification phase
 
-The protocol is in production use within Vernam Mail's pre-launch encrypted-email system, where Go (server), TypeScript (web client), and Kotlin (Android) implementations have been interoperating for ~5 months. Funding from NLnet (Restack fund, application pending) will support extracting it as a standalone, audited, open-source library.
+The protocol runs in Vernam Mail's pre-launch encrypted-email deployment, where Go (server), TypeScript (web client), and Kotlin (Android) implementations have been interoperating since early 2026. Funding from NLnet (Restack fund, application planned for its first open call) will support extracting it as a standalone, audited, open-source library.
 
 ## What this is not
 
@@ -46,12 +46,12 @@ The protocol is in production use within Vernam Mail's pre-launch encrypted-emai
 
 ## Reading order
 
-- **5 minutes**: this README + [SPEC.md §1–2](./SPEC.md) (motivation and overview)
+- **5 minutes**: this README + [SPEC.md §1-2](./SPEC.md) (motivation and overview)
 - **15 minutes**: add [docs/threat-model.md](./docs/threat-model.md) and [docs/prior-art.md](./docs/prior-art.md)
 - **45 minutes**: the full [SPEC.md](./SPEC.md)
 - **For NLnet reviewers**: also see [docs/ngi-alignment.md](./docs/ngi-alignment.md)
 - **Hands-on (Go)**: `cd go && go test -v ./...` (10 tests pass; see [go/envelope_test.go](./go/envelope_test.go))
-- **Hands-on (TypeScript)**: `cd ts && npx tsx --test ./envelope-field.test.ts` — the `TestKnownVectorMatchesGo` test proves the TS output is byte-identical to Go
+- **Hands-on (TypeScript)**: `cd ts && npx tsx --test ./envelope-field.test.ts` (the `TestKnownVectorMatchesGo` test proves the TS output is byte-identical to Go)
 - **Working demo**: `cd go && go run ./examples/encrypt_decrypt` (encrypts three envelope fields, decrypts them, demonstrates tamper rejection; see [go/examples/](./go/examples/))
 
 ## Comparison with existing systems
@@ -63,7 +63,7 @@ The protocol is in production use within Vernam Mail's pre-launch encrypted-emai
 | Tuta | Encrypted | Encrypted | Plain | Plain | Plain | Plain |
 | **This protocol** | Encrypted | Encrypted | Encrypted | Encrypted | Encrypted | Hashed + encrypted |
 
-(As of April 2026; see SPEC.md Appendix A for sources.)
+(As of July 2026; see SPEC.md Appendix A for sources.)
 
 ## License
 

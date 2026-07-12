@@ -4,7 +4,7 @@ This document maps the envelope-metadata-encryption protocol's technical contrib
 
 ## Project Context
 
-The applicant team consists of a Canadian-incorporated solo founder (Vernam Mail). The proposal seeks Restack fund support to extract a privacy-preserving email-encryption protocol from a private codebase and publish it as an open commons artifact: specification, reference Go library, cross-language interop test vectors, and third-party cryptographic review. Research and development is the primary objective: the deliverables are a formal protocol specification, a reference implementation, an interoperability test suite validated across three independent implementations, and an independent cryptographic review — not a commercial product.
+The applicant team consists of a Canadian-incorporated solo founder (Vernam Mail). The proposal seeks Restack fund support to extract a privacy-preserving email-encryption protocol from a private codebase and publish it as an open commons artifact: specification, reference Go library, cross-language interop test vectors, and third-party cryptographic review. Research and development is the primary objective: the deliverables are a formal protocol specification, a reference implementation, an interoperability test suite validated across three independent implementations, and an independent cryptographic review, not a commercial product.
 
 Although the applicant is non-EU, the project's substantive contribution falls within the NGI program's stated mission, with several concrete European-aligned characteristics enumerated below.
 
@@ -22,18 +22,18 @@ The hybrid post-quantum construction (ML-KEM-1024 + X25519 with HKDF combination
 
 ### Inclusion
 
-The protocol is published under Apache 2.0 with a vendor-neutral specification. Any encrypted-email provider, federated mail system, or research project may adopt it without licensing barriers. The specification is intentionally protocol-agnostic with respect to storage backend, key management, and authentication, allowing diverse implementers — from large providers to self-hosted single-user systems — to incorporate it.
+The protocol is published under Apache 2.0 with a vendor-neutral specification. Any encrypted-email provider, federated mail system, or research project may adopt it without licensing barriers. The specification is intentionally protocol-agnostic with respect to storage backend, key management, and authentication, allowing diverse implementers, from large providers to self-hosted single-user systems, to incorporate it.
 
 ## European Standards and Research
 
 The specification cites and aligns with European cryptographic standards alongside NIST and IETF standards:
 
-- **ETSI TR 103 619** — "Migration strategies and recommendations to Quantum Safe schemes" — the ETSI guidance on transitioning to post-quantum cryptography. This protocol's hybrid construction is consistent with the migration patterns recommended therein.
-- **ETSI TR 103 823** — "Quantum-Safe Public-Key Encryption and Key Encapsulation" — directly applicable to the hybrid KEM construction.
-- **IETF RFC 9180 (HPKE)** — Hybrid Public Key Encryption — informs the structure of our combination of post-quantum and classical KEMs.
-- **Stebila et al., "Hybrid key exchange in TLS 1.3"** (`draft-ietf-tls-hybrid-design`) — design pattern reference.
+- **ETSI TR 103 619**, "Migration strategies and recommendations to Quantum Safe schemes": the ETSI guidance on transitioning to post-quantum cryptography. This protocol's hybrid construction is consistent with the migration patterns recommended therein.
+- **ETSI TR 103 823**, "Quantum-Safe Public-Key Encryption and Key Encapsulation": directly applicable to the hybrid KEM construction.
+- **IETF RFC 9180 (HPKE)**, Hybrid Public Key Encryption: informs the structure of our combination of post-quantum and classical KEMs.
+- **Stebila et al., "Hybrid key exchange in TLS 1.3"** (`draft-ietf-tls-hybrid-design`): design pattern reference.
 
-European cryptographic researchers whose foundational work this protocol builds upon include Daniel J. Bernstein (TU Eindhoven, X25519 designer), the KU Leuven COSIC group (lattice-based cryptography research underlying ML-KEM/Kyber), and Bart Preneel and colleagues at COSIC (HKDF cryptanalysis).
+European cryptographic researchers whose foundational work this protocol builds upon include Daniel J. Bernstein (TU Eindhoven and UIC, designer of Curve25519/X25519), Peter Schwabe (Radboud University and MPI-SP, co-author of CRYSTALS-Kyber, standardized as ML-KEM), and the KU Leuven COSIC group (designers of the SABER NIST post-quantum finalist and a long-standing center of lattice-cryptography research).
 
 ## Privacy-by-Design and GDPR Alignment
 
@@ -52,7 +52,7 @@ The reference deployment (Vernam Mail's pre-launch system) is hosted on infrastr
 
 ## Beneficiaries
 
-The open commons deliverable benefits every implementer of encrypted email globally — including European users, providers, and researchers. Specifically:
+The open commons deliverable benefits every implementer of encrypted email globally, including European users, providers, and researchers. Specifically:
 
 - **European privacy-preserving email providers** (Tuta, Mailfence, Mailbox.org, Disroot, RiseUp, etc.) gain a vendor-neutral specification they may adopt to reduce metadata exposure beyond their current designs.
 - **European researchers** working on email privacy and post-quantum cryptography gain a documented protocol and reference implementation suitable for academic citation, extension, and analysis.
@@ -64,8 +64,8 @@ The open commons deliverable benefits every implementer of encrypted email globa
 This project is designed to complement, not duplicate, prior and concurrent NLnet-funded post-quantum work:
 
 - **Quantum-Safe Cryptography in Sequoia PGP** (NGI0 Commons Fund, 2025): operates at the OpenPGP layer for message-content encryption. This project operates at the envelope-metadata layer in mail-system storage, a distinct concern.
-- **Rosenpass** (NGI Assure, 2022–2024): post-quantum extension to WireGuard, transport-layer. This project operates at the application-layer storage encryption, orthogonal.
-- **oqsprovider** (NGI Assure, 2021–2023): post-quantum primitives for OpenSSL. This project consumes such primitives but does not itself provide them.
+- **Rosenpass** (NGI Assure, 2022-2024): post-quantum extension to WireGuard, transport-layer. This project operates at the application-layer storage encryption, orthogonal.
+- **oqsprovider** (NGI Assure, 2021-2023): post-quantum primitives for OpenSSL. This project consumes such primitives but does not itself provide them.
 - **CurveForge** (NGI0 Commons Fund, 2026): low-level post-quantum arithmetic. Adjacent; could be used at the implementation layer.
 
 The proposed deliverable fills a gap not addressed by these existing projects: encryption of email envelope metadata at the storage layer, with a vendor-neutral specification and reference implementation.

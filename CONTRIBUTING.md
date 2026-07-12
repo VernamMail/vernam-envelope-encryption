@@ -4,7 +4,7 @@ Thank you for your interest in this project. This document describes how to cont
 
 ## Project Phase
 
-This repository is currently in **specification phase**. The full reference implementation is scheduled to land under NLnet Restack fund support (application pending). See [STATUS.md](./STATUS.md) and [ROADMAP.md](./ROADMAP.md) for the current state.
+This repository is currently in **specification phase**. The full reference implementation is scheduled to land under NLnet Restack fund support (application planned for the fund's first open call). See [STATUS.md](./STATUS.md) and [ROADMAP.md](./ROADMAP.md) for the current state.
 
 Contributions during the spec phase are particularly welcome for:
 

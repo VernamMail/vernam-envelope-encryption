@@ -4,7 +4,7 @@ This roadmap aligns with the deliverables proposed to NLnet's Restack fund. Mile
 
 The current public repository contains an initial draft specification and a skeletal Go reference implementation of envelope-field encryption sufficient to demonstrate technical capability and reproducible test vectors. Grant funding supports the substantial extraction, formalization, and validation work that remains.
 
-## Milestone 1 — Specification Finalization (Months 1–2)
+## Milestone 1: Specification Finalization (Months 1-2)
 
 **State:**
 - [x] Initial draft specification (v0.1) at [SPEC.md](./SPEC.md)
@@ -19,13 +19,13 @@ The current public repository contains an initial draft specification and a skel
 
 **Deliverable:** finalized SPEC.md, threat-model.md, wire-format.md tagged at v1.0; public review log archived.
 
-## Milestone 2 — Reference Library Extraction & Hardening (Months 3–5)
+## Milestone 2: Reference Library Extraction & Hardening (Months 3-5)
 
 The current public skeleton implements envelope-field encryption at v0.1. This milestone extracts the production-grade implementation from product-coupled code and hardens the public library to release quality.
 
 **Tasks:**
 - [ ] Extract envelope-field encryption from Vernam Mail's product code into the public library, decoupled from product-specific types, error models, and database schemas
-- [ ] Add per-recipient session-key wrapping primitives (the symmetric and PGP-fallback paths; not yet the hybrid KEM)
+- [ ] Add the symmetric session-key self-wrap primitive (the sender's own sent-items copy; the hybrid KEM lands in milestone 3)
 - [ ] Comprehensive unit tests across boundaries: empty plaintext, large plaintext, malformed inputs, tampering, version mismatch
 - [ ] Fuzzing harness for wire-format parsing (`go test -fuzz`)
 - [ ] Expand test vector suite (at least 10 envelope-field vectors covering edge cases)
@@ -35,7 +35,7 @@ The current public skeleton implements envelope-field encryption at v0.1. This m
 
 **Deliverable:** Go module v0.5, published, with documentation, tests, fuzzing, and expanded test vectors.
 
-## Milestone 3 — Hybrid KEM Extraction & Cross-Language Interop (Months 6–8)
+## Milestone 3: Hybrid KEM Extraction & Cross-Language Interop (Months 6-8)
 
 **Tasks:**
 - [ ] Extract the hybrid ML-KEM-1024 + X25519 wrap/unwrap implementation from product code into the public Go library, decoupled
@@ -48,19 +48,19 @@ The current public skeleton implements envelope-field encryption at v0.1. This m
 
 **Deliverable:** Go module v0.8, hybrid KEM working, cross-language interop validated and documented.
 
-## Milestone 4 — Documentation, Examples, and Integration Guide (Months 9–10)
+## Milestone 4: Documentation, Examples, and Integration Guide (Months 9-10)
 
 **Tasks:**
 - [ ] Tutorial: "Adding envelope-metadata encryption to a mail system" (~3000 words)
 - [ ] Migration guide: "Moving from OpenPGP-only to envelope encryption"
-- [ ] 3–5 working example programs in `go/examples/`
+- [ ] 3-5 working example programs in `go/examples/`
 - [ ] Hosted documentation site (GitHub Pages or similar)
 - [ ] Comparison and positioning document: how this complements OpenPGP, S/MIME, draft-ietf-openpgp-pqc
 - [ ] Public review of beta release; incorporation of feedback
 
 **Deliverable:** documentation site, example programs, public beta announcement, feedback log.
 
-## Milestone 5 — Third-Party Cryptographic Review and v1.0 Release (Months 11–12)
+## Milestone 5: Third-Party Cryptographic Review and v1.0 Release (Months 11-12)
 
 **Tasks:**
 - [ ] Engage independent cryptographic reviewer (academic researcher or professional firm; candidates identified during M1)

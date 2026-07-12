@@ -6,7 +6,7 @@ This document surveys related work in encrypted email and post-quantum cryptogra
 
 ### Proton Mail
 
-Proton Mail provides end-to-end encryption for the message body, subject, and attachments using OpenPGP. As of 2024–2025, Proton has begun rolling out post-quantum support via hybrid constructions for the body encryption layer.
+Proton Mail provides end-to-end encryption for the message body and attachments using OpenPGP (the subject line is not encrypted). Proton has announced work toward post-quantum support via hybrid constructions for the content-encryption layer; see their blog for current rollout status.
 
 **Envelope metadata handling:** Proton Mail stores `From`, `To`, `Cc`, `Bcc`, `Reply-To`, `Message-ID`, and timestamps in plaintext at rest. Search index data (with the user's consent) is also indexed plaintext on the server in some configurations.
 
@@ -14,7 +14,7 @@ Proton Mail provides end-to-end encryption for the message body, subject, and at
 
 ### Tuta (formerly Tutanota)
 
-Tuta encrypts the body, subject, and attachments. It deployed a hybrid post-quantum KEM in late 2024.
+Tuta encrypts the body, subject, and attachments. It deployed TutaCrypt, a hybrid post-quantum KEM, in March 2024.
 
 **Envelope metadata handling:** Subject is encrypted (notable; ahead of Proton). Sender and recipient addresses, Message-ID, and timestamps are stored in plaintext.
 
@@ -43,7 +43,7 @@ This specification uses ML-KEM-1024 (FIPS 203) for the post-quantum component of
 The pattern of combining a post-quantum KEM with a classical KEM (e.g., X25519) and deriving a single shared key via HKDF is well-established. See:
 
 - Stebila, D., et al., "Hybrid key exchange in TLS 1.3," IETF draft `draft-ietf-tls-hybrid-design`
-- ETSI TR 103 619, "Quantum-Safe Virtual Private Networks"
+- ETSI TR 103 619, "Migration strategies and recommendations to Quantum Safe schemes"
 - Westerbaan, B., "Hybrid Public Key Encryption," Cloudflare Blog, 2022
 
 ### NLnet-Funded PQC Projects (Adjacent)
@@ -52,9 +52,9 @@ NLnet has funded several post-quantum cryptography projects relevant to this wor
 
 - **Quantum-Safe Cryptography in Sequoia PGP** (NGI0 Commons Fund, 2025): implements `draft-ietf-openpgp-pqc` in Sequoia PGP
 - **CurveForge** (NGI0 Commons Fund, 2026): optimized post-quantum arithmetic toolkit
-- **Rosenpass** (NGI Assure, 2022–2024): post-quantum security add-on for WireGuard
-- **oqsprovider** (NGI Assure, 2021–2023): post-quantum algorithms for OpenSSL
-- **KEMTLS standardization** (NGI Assure, 2021–2023)
+- **Rosenpass** (NGI Assure, 2022-2024): post-quantum security add-on for WireGuard
+- **oqsprovider** (NGI Assure, 2021-2023): post-quantum algorithms for OpenSSL
+- **KEMTLS standardization** (NGI Assure, 2021-2023)
 
 This specification aims to complement these efforts by addressing the email-system layer specifically, with emphasis on envelope metadata rather than message body.
 
@@ -68,7 +68,7 @@ To the best of our knowledge, the combination of:
 
 …is not addressed by any prior published specification. Existing encrypted-email systems either:
 
-- Encrypt only the body and subject (Proton, Tuta)
+- Encrypt only message contents (Proton, Tuta)
 - Operate as walled gardens incompatible with SMTP (Bitmessage, certain decentralized systems)
 - Use signatures/encryption at the transport layer (DKIM, S/MIME) which do not encrypt at rest
 
@@ -80,16 +80,16 @@ This specification does not replace OpenPGP. OpenPGP and S/MIME remain valuable 
 
 Implementations MAY interoperate with OpenPGP for cross-provider encrypted mail by:
 
-- Using OpenPGP for message body encryption when communicating with non-Vernam-style providers
+- Using OpenPGP for message body encryption when communicating with providers that do not implement this protocol
 - Re-wrapping inbound OpenPGP-encrypted messages under this protocol's session-key model for at-rest storage
 - Maintaining OpenPGP keys solely for external interoperability, never for internal storage encryption
 
 ## Academic References (selected)
 
-- Schneier, B. "Data and Goliath: The Hidden Battles to Collect Your Data and Control Your World," W.W. Norton, 2015. — On the value of metadata to surveillance
-- Greenwald, G. "No Place to Hide," Metropolitan Books, 2014. — On NSA bulk metadata collection
+- Schneier, B. "Data and Goliath: The Hidden Battles to Collect Your Data and Control Your World," W.W. Norton, 2015. On the value of metadata to surveillance.
+- Greenwald, G. "No Place to Hide," Metropolitan Books, 2014. On NSA bulk metadata collection.
 - Bernstein, D., Lange, T. "Post-quantum cryptography," Nature, 2017
-- "Mass Surveillance," EFF Surveillance Self-Defense Project — https://ssd.eff.org/
+- "Mass Surveillance," EFF Surveillance Self-Defense Project: https://ssd.eff.org/
 
 ## Email Privacy Coalition (informative)
 

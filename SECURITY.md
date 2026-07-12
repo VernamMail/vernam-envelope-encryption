@@ -27,21 +27,21 @@ In scope:
 
 Out of scope:
 
-- Vulnerabilities in dependencies (Go standard library, `crypto/mlkem`, `crypto/ecdh`) — please report those upstream
+- Vulnerabilities in dependencies (Go standard library, `crypto/mlkem`, `crypto/ecdh`): please report those upstream
 - Attacks already documented as out-of-scope in [docs/threat-model.md](./docs/threat-model.md), including:
   - Compromised client devices
   - Active database-write adversaries causing transaction-level correlation
   - Traffic analysis at the SMTP transport layer
-- Issues in third-party software that integrates this protocol — report those to the integrator
+- Issues in third-party software that integrates this protocol: report those to the integrator
 
 ## Coordinated Disclosure
 
 We follow a 90-day coordinated disclosure timeline by default:
 
 1. **Day 0:** report received, acknowledged within 72 hours
-2. **Day 1–14:** assessment, root-cause analysis, fix design
-3. **Day 14–60:** patch development, testing, security advisory drafted
-4. **Day 60–90:** patch released to users, public advisory published
+2. **Day 1-14:** assessment, root-cause analysis, fix design
+3. **Day 14-60:** patch development, testing, security advisory drafted
+4. **Day 60-90:** patch released to users, public advisory published
 
 Earlier public disclosure may be agreed by mutual consent if a fix is straightforward. Later disclosure may be requested if the fix is complex or coordinated with other affected projects (e.g., upstream cryptographic libraries).
 
@@ -68,4 +68,4 @@ You may also contact us with general cryptographic-design feedback that is not s
 
 ---
 
-Last updated: 2026-05-02
+Last updated: 2026-07-12

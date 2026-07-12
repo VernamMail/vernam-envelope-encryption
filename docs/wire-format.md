@@ -29,7 +29,7 @@ This document gives a concrete byte-level layout for the wire formats defined in
 | 1601 | 0x641 | 12 | AES-GCM IV |
 | 1613 | 0x64D | 32 | Wrapped session key |
 | 1645 | 0x66D | 16 | AES-GCM authentication tag |
-| **1661** | **0x67D** | — | (end) |
+| **1661** | **0x67D** | - | (end) |
 
 ## Encrypted Envelope Field (variable length)
 

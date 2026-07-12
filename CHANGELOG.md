@@ -12,7 +12,7 @@ Items planned for v0.5 (NLnet milestone 2):
 - Production-grade extraction of envelope-field encryption from product code
 - Comprehensive test vector suite (≥10 envelope-field vectors)
 - Fuzzing harness for wire-format parsing
-- Per-recipient session-key wrapping primitives (symmetric + PGP-fallback paths)
+- Symmetric session-key self-wrap primitive (sender's sent-items copy)
 - godoc-quality documentation on all exported functions
 
 Items planned for v0.8 (NLnet milestone 3):
@@ -39,7 +39,7 @@ Initial public draft.
 ### Added
 
 - Specification draft v0.1 ([SPEC.md](./SPEC.md), 10 sections, ~465 lines)
-- Threat model with explicit adversary classes A1–A7 ([docs/threat-model.md](./docs/threat-model.md))
+- Threat model with explicit adversary classes A1-A7 ([docs/threat-model.md](./docs/threat-model.md))
 - Wire-format documentation with byte-level diagrams ([docs/wire-format.md](./docs/wire-format.md))
 - Prior-art comparison with Proton Mail, Tuta, and NLnet-funded PQC projects ([docs/prior-art.md](./docs/prior-art.md))
 - NGI alignment / European Dimension document ([docs/ngi-alignment.md](./docs/ngi-alignment.md))
