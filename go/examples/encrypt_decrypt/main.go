@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/vernammail/envelope-encryption"
+	envelope "github.com/VernamMail/vernam-envelope-encryption/go"
 )
 
 func main() {

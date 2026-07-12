@@ -1,3 +1,3 @@
-module github.com/vernammail/envelope-encryption
+module github.com/VernamMail/vernam-envelope-encryption/go
 
 go 1.25
