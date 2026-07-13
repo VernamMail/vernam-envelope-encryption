@@ -6,11 +6,11 @@ This document surveys related work in encrypted email and post-quantum cryptogra
 
 ### Proton Mail
 
-Proton Mail provides end-to-end encryption for the message body and attachments using OpenPGP (the subject line is not encrypted). Proton has announced work toward post-quantum support via hybrid constructions for the content-encryption layer; see their blog for current rollout status.
+Proton Mail provides end-to-end encryption for the message body and attachments using OpenPGP (the subject line is not encrypted). Proton launched hybrid post-quantum protection for the content-encryption layer in May 2026.
 
 **Envelope metadata handling:** Proton Mail stores `From`, `To`, `Cc`, `Bcc`, `Reply-To`, `Message-ID`, and timestamps in plaintext at rest. Search index data (with the user's consent) is also indexed plaintext on the server in some configurations.
 
-**Reference:** https://proton.me/blog/post-quantum-encryption-mail
+**Reference:** https://proton.me/blog/post-quantum-encryption
 
 ### Tuta (formerly Tutanota)
 

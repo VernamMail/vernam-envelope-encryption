@@ -1,6 +1,6 @@
 # Roadmap
 
-This roadmap aligns with the deliverables proposed to NLnet's Restack fund. Milestones reflect the work required to take the existing private, product-coupled protocol implementation and produce a clean, audited, public commons artifact.
+This roadmap aligns with the deliverables to be proposed to NLnet's Restack fund. Milestones reflect the work required to take the existing private, product-coupled protocol implementation and produce a clean, audited, public commons artifact.
 
 The current public repository contains an initial draft specification and a skeletal Go reference implementation of envelope-field encryption sufficient to demonstrate technical capability and reproducible test vectors. Grant funding supports the substantial extraction, formalization, and validation work that remains.
 
@@ -74,7 +74,7 @@ The current public skeleton implements envelope-field encryption at v0.1. This m
 
 ## Post-v1.0 (Out of Grant Scope)
 
-Directions beyond the funded period, mentioned for context:
+Directions beyond the grant period (if funded), mentioned for context:
 
 - IETF Internet-Draft submission for the protocol
 - Reference implementations in additional languages (Rust, TypeScript published as separate package)
@@ -84,4 +84,4 @@ Directions beyond the funded period, mentioned for context:
 
 ## Status Tracking
 
-Issue tracker and progress reports will be maintained on the GitHub repository once the application result is known. Public progress reports will be published quarterly during the funded period.
+Issue tracker and progress reports will be maintained on the GitHub repository once the application result is known. Public progress reports will be published quarterly during the grant period if funded.

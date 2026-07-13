@@ -6,7 +6,7 @@
 //   - AES-256-GCM envelope-field encryption / decryption (EncryptField, DecryptField)
 //   - Wire-format constants validated against the specification
 //
-// Planned as grant-funded milestones (see ../ROADMAP.md):
+// Planned as roadmap milestones (see ../ROADMAP.md):
 //   - Hybrid ML-KEM-1024 + X25519 wrap/unwrap (Wrap, Unwrap)
 //   - Comprehensive test vectors for the wrapped-key wire format
 //   - Cross-language interop test suite

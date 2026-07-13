@@ -187,7 +187,7 @@ func TestDecryptFieldRejectsTooShort(t *testing.T) {
 }
 
 // TestWrapNotYetImplemented documents that hybrid wrap is scheduled for
-// milestone 3 of the NLnet-funded work.
+// roadmap milestone 3.
 func TestWrapNotYetImplemented(t *testing.T) {
 	k, err := NewSessionKey()
 	if err != nil {

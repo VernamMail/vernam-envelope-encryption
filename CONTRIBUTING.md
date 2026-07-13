@@ -14,7 +14,7 @@ Contributions during the spec phase are particularly welcome for:
 - Test vector additions for the implemented portion (envelope-field encryption)
 - Documentation improvements
 
-We are not yet accepting large code contributions to the reference implementation, since the implementation roadmap is funded and managed against milestones. After milestone 3 is complete, this policy will relax.
+We are not yet accepting large code contributions to the reference implementation, since the implementation roadmap is planned against grant milestones (see [ROADMAP.md](./ROADMAP.md)) and will be managed against them if funded. After milestone 3 is complete, this policy will relax.
 
 ## How to Propose a Specification Change
 

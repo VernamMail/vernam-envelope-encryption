@@ -9,8 +9,8 @@
 // (verified against test-vectors/basic.json, vector envelope-field-001).
 //
 // The hybrid ML-KEM-1024 + X25519 key wrapping (Wrap/Unwrap in the Go
-// reference) is NOT included here; it is scheduled as a funded cross-language
-// deliverable. See ../ROADMAP.md milestone 3.
+// reference) is NOT included here; it is scheduled as a cross-language
+// deliverable of the roadmap. See ../ROADMAP.md milestone 3.
 
 // Protocol constants. See SPEC.md sections 4.2 and 5.2.
 export const SESSION_KEY_SIZE = 32; // bytes (AES-256)

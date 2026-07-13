@@ -4,7 +4,7 @@
 
 ## Current Phase
 
-**Specification drafted; partial reference implementation; pending NLnet Restack fund support for full extraction, hardening, audit, and v1.0 release.**
+**Specification drafted; partial reference implementation; seeking NLnet Restack fund support (application planned for the fund's first open call) for full extraction, hardening, audit, and v1.0 release.**
 
 This repository represents the open-commons extraction of a protocol that is already in live use within Vernam Mail's pre-launch encrypted-email system. The grant funds the **extraction work, not the original implementation**.
 
@@ -19,7 +19,7 @@ This repository represents the open-commons extraction of a protocol that is alr
   - 32-byte session key generation (`NewSessionKey`)
   - AES-256-GCM envelope-field encryption / decryption (`EncryptField`, `DecryptField`)
   - Wire-format constants validated against the specification
-  - 10 passing tests including a verified known-vector test against [test-vectors/basic.json](./test-vectors/basic.json)
+  - 11 passing tests including a verified known-vector test against [test-vectors/basic.json](./test-vectors/basic.json)
 - **Cross-language reference (TypeScript):** minimal standalone TS module at [ts/](./ts/) implementing envelope-field encryption on the Web Crypto API. Its `TestKnownVectorMatchesGo` test asserts byte-identical output to the Go reference for test vector envelope-field-001, a concrete, public demonstration that the protocol is language-agnostic.
 - **Verified test vector:** envelope-field-001 in [test-vectors/basic.json](./test-vectors/basic.json), reproduced identically by both the Go (`go test -v ./...`) and TypeScript (`npx tsx --test`) implementations.
 - **License:** [Apache 2.0](./LICENSE)

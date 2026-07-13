@@ -8,7 +8,7 @@ Proton Mail, Tuta, and every other major encrypted-email provider store envelope
 
 ## The protocol
 
-This repository specifies and implements:
+This repository specifies, and partially implements:
 
 1. **Per-email symmetric encryption** of every envelope field (From, To, CC, BCC, Reply-To, Message-ID, timestamps, Subject, etc.) using AES-256-GCM with a fresh per-email session key.
 2. **Per-recipient session key wrapping** using a hybrid post-quantum KEM combining ML-KEM-1024 (NIST FIPS 203) and X25519 (RFC 7748), bound together via HKDF-SHA256 with a v2 ciphertext-binding AAD construction.
@@ -19,7 +19,7 @@ The result: a server storing encrypted email can see the *number* of recipients 
 
 ## Status
 
-**Specification plus partial reference implementation; pending NLnet Restack funding.** See [STATUS.md](./STATUS.md).
+**Specification plus partial reference implementation; seeking NLnet Restack funding (application planned for the fund's first open call).** See [STATUS.md](./STATUS.md).
 
 This repository contains:
 
@@ -50,7 +50,7 @@ The protocol runs in Vernam Mail's pre-launch encrypted-email deployment: the Go
 - **15 minutes**: add [docs/threat-model.md](./docs/threat-model.md) and [docs/prior-art.md](./docs/prior-art.md)
 - **45 minutes**: the full [SPEC.md](./SPEC.md)
 - **For NLnet reviewers**: also see [docs/ngi-alignment.md](./docs/ngi-alignment.md)
-- **Hands-on (Go)**: `cd go && go test -v ./...` (10 tests pass; see [go/envelope_test.go](./go/envelope_test.go))
+- **Hands-on (Go)**: `cd go && go test -v ./...` (11 tests pass; see [go/envelope_test.go](./go/envelope_test.go))
 - **Hands-on (TypeScript)**: `cd ts && npx tsx --test ./envelope-field.test.ts` (the `TestKnownVectorMatchesGo` test proves the TS output is byte-identical to Go)
 - **Working demo**: `cd go && go run ./examples/encrypt_decrypt` (encrypts three envelope fields, decrypts them, demonstrates tamper rejection; see [go/examples/](./go/examples/))
 

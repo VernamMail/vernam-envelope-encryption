@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Planned
 
-Grant-funded milestones toward v0.5 and v0.8 (extraction, fuzzing, expanded vectors, hybrid KEM, interop suite) are tracked in [ROADMAP.md](./ROADMAP.md).
+The milestones toward v0.5 and v0.8 (extraction, fuzzing, expanded vectors, hybrid KEM, interop suite), planned for grant funding, are tracked in [ROADMAP.md](./ROADMAP.md).
 
 ## [0.1.0] - 2026-05-02
 

@@ -4,7 +4,7 @@ This document maps the envelope-metadata-encryption protocol's technical contrib
 
 ## Project Context
 
-The applicant team consists of a Canadian-incorporated solo founder (Vernam Mail). The proposal seeks Restack fund support to extract a privacy-preserving email-encryption protocol from a private codebase and publish it as an open commons artifact: specification, reference Go library, cross-language interop test vectors, and third-party cryptographic review. Research and development is the primary objective: the deliverables are a formal protocol specification, a reference implementation, an interoperability test suite validated across three independent implementations, and an independent cryptographic review, not a commercial product.
+The applicant team consists of a Canadian-incorporated solo founder (Imporon Inc., operating as Vernam Mail). The proposal seeks Restack fund support to extract a privacy-preserving email-encryption protocol from a private codebase and publish it as an open commons artifact: specification, reference Go library, cross-language interop test vectors, and third-party cryptographic review. Research and development is the primary objective: the deliverables are a formal protocol specification, a reference implementation, an interoperability test suite validated across three independent implementations, and an independent cryptographic review, not a commercial product.
 
 Although the applicant is non-EU, the project's substantive contribution falls within the NGI program's stated mission, with several concrete European-aligned characteristics enumerated below.
 
@@ -33,7 +33,7 @@ The specification cites and aligns with European cryptographic standards alongsi
 - **IETF RFC 9180 (HPKE)**, Hybrid Public Key Encryption: informs the structure of our combination of post-quantum and classical KEMs.
 - **Stebila et al., "Hybrid key exchange in TLS 1.3"** (`draft-ietf-tls-hybrid-design`): design pattern reference.
 
-European cryptographic researchers whose foundational work this protocol builds upon include Daniel J. Bernstein (TU Eindhoven and UIC, designer of Curve25519/X25519), Peter Schwabe (Radboud University and MPI-SP, co-author of CRYSTALS-Kyber, standardized as ML-KEM), and the KU Leuven COSIC group (designers of the SABER NIST post-quantum finalist and a long-standing center of lattice-cryptography research).
+Researchers at European institutions whose foundational work this protocol builds upon include Daniel J. Bernstein (TU Eindhoven, designer of Curve25519/X25519), Peter Schwabe (Radboud University and MPI-SP, co-author of CRYSTALS-Kyber, standardized as ML-KEM), and the KU Leuven COSIC group (designers of the SABER NIST post-quantum finalist and a long-standing center of lattice-cryptography research).
 
 ## Privacy-by-Design and GDPR Alignment
 
