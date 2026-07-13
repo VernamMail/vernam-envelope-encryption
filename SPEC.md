@@ -459,6 +459,7 @@ For a single-recipient email, the per-email overhead is ~364 + 2 × 1661 ≈ **3
 | Standard SMTP | Plain | Plain | Plain | Plain | Plain | Plain |
 | Proton Mail | Encrypted | Plain | Plain | Plain | Plain | Plain |
 | Tuta | Encrypted | Encrypted | Plain | Plain | Plain | Plain |
+| Secria | Encrypted | Not claimed | Plain | Plain | Plain | Plain |
 | This protocol | Encrypted | Encrypted | Encrypted | Encrypted | Encrypted | Hashed + encrypted |
 
 (As of July 2026; verify before citing in derivative work.)

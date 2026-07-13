@@ -24,6 +24,16 @@ Tuta encrypts the body, subject, and attachments. It deployed TutaCrypt, a hybri
 
 Notion acquired Skiff in 2024 and discontinued the service. Skiff's design was similar to Proton's; envelope metadata was plaintext at rest.
 
+### Secria
+
+Secria is a post-quantum encrypted email service launched in 2025. It is the closest system to this project on cryptographic primitives: its published whitepaper specifies a hybrid ML-KEM-1024 + X25519 KEM with the shared secrets concatenated before an HKDF-SHA256 derivation, AES-256-GCM for key wrapping and message encryption, and Argon2id password hashing, the same building blocks used here.
+
+**Envelope metadata handling:** message bodies and attachments are end-to-end encrypted, and inbound external mail is encrypted on arrival under the recipient's public keys. Envelope metadata protection is claimed nowhere: the whitepaper's threat model describes the server as storing "encrypted private key blobs" and "encrypted message bodies" and is silent on sender, recipient, timestamp, and Message-ID storage; the subject line is likewise never addressed. Secria's own blog notes that "even with perfect encryption, traditional email leaks who you're talking to, when, and how often" without describing a mitigation. Secria therefore sits at approximately Proton's metadata-exposure level while using a modern PQ content-encryption stack.
+
+Secria illustrates the specific gap this specification targets: adopting a hybrid post-quantum KEM for message content does not, by itself, protect the envelope. The same primitives Secria already deploys could wrap per-recipient session keys over encrypted metadata fields using the construction defined here.
+
+**Reference:** https://secria.me/whitepaper/
+
 ## Post-Quantum Cryptography Standards
 
 ### NIST PQC Project

@@ -61,7 +61,10 @@ The protocol runs in Vernam Mail's pre-launch encrypted-email deployment: the Go
 | Standard SMTP | Plain | Plain | Plain | Plain | Plain | Plain |
 | Proton Mail | Encrypted | Plain | Plain | Plain | Plain | Plain |
 | Tuta | Encrypted | Encrypted | Plain | Plain | Plain | Plain |
+| Secria | Encrypted | Not claimed | Plain | Plain | Plain | Plain |
 | **This protocol** | Encrypted | Encrypted | Encrypted | Encrypted | Encrypted | Hashed + encrypted |
+
+Secria is notable because it already deploys the same hybrid ML-KEM-1024 + X25519 primitives this protocol uses, for message content only. Adopting a post-quantum KEM does not protect the envelope; that is the gap this specification fills.
 
 (As of July 2026; see [docs/prior-art.md](./docs/prior-art.md) for sources.)
 
